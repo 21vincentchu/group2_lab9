@@ -7,8 +7,8 @@ import javafx.scene.layout.GridPane;
 public class HydraHead
 {
     private int headSize;
-    private int currentGridX = 800;
-    private int currentGridY = 850;
+    private int currentGridX = 40;
+    private int currentGridY = 40;
     private ImageView imageView;
 
     public HydraHead(Image image, int size) {
@@ -32,5 +32,13 @@ public class HydraHead
         this.currentGridX = gridX;
         this.currentGridY = gridY;
         // TODO: Add logic to place head in grid
+
+        Image initialHead = HydraHeadFactory.getHead(headSize);
+        ImageView initialHeadView = new ImageView(initialHead);
+        initialHeadView.setFitWidth(40);
+        initialHeadView.setFitHeight(40);
+        board.add(initialHeadView,gridX,gridY);
+
+        //check if they're not on top of each other.
     }
 }

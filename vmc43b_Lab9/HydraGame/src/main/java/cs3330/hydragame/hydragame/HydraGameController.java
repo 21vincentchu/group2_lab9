@@ -1,11 +1,14 @@
 package cs3330.hydragame.hydragame;
 
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
+import java.util.Random;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,6 +25,8 @@ public class HydraGameController implements Initializable
     private Button playButton;
     private Slider slider;
     private GridPane gameGrid;
+    Random rand = new Random();
+
 
     public BorderPane getLayout()
     {
@@ -82,9 +87,7 @@ public class HydraGameController implements Initializable
         root.setCenter(gameGrid);
 
         return root;
-
     }
-
 
     public void reset(ActionEvent event)
     {
@@ -102,9 +105,21 @@ public class HydraGameController implements Initializable
         slider.setDisable(true);
 
         int headSize = (int) slider.getValue();
-        HydraHead initialHead = HydraHeadFactory.getHead(headSize);
+        Image initialHead = HydraHeadFactory.getHead(headSize);
+        //ImageView initialHeadView = new ImageView(initialHead);
         // TODO: Place head in random grid cell
+        int numRow = rand.nextInt(16)+1;
+        int numCol = rand.nextInt(16)+1;
 
+        HydraHead head = new HydraHead(initialHead,headSize);
+        head.putIn(numCol, numRow, gameGrid);
+
+        //ararylistH
+        //random 2 or 3,
+        //arraylistV
+        //while loop != arraylistH && !=arraylistV && == random number of heads, end of while loop, put a counter.
+        //run every time person clicks head
+        //pass headsize -1 to get the next head.
     }
 
     public void setHeadSize(MouseEvent event)
