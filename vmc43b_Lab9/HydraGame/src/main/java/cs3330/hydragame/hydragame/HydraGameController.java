@@ -1,13 +1,10 @@
 package cs3330.hydragame.hydragame;
-
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
 import java.util.Random;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,16 +15,20 @@ import javafx.scene.layout.*;
 
 public class HydraGameController implements Initializable
 {
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {}
 
+    //initialize fields
     private Button resetButton;
     private Button playButton;
     private Slider slider;
     private GridPane gameGrid;
+
+    //make new random object
     Random rand = new Random();
 
-
+    //make border pane for entire game
     public BorderPane getLayout()
     {
         //make border pane
@@ -65,7 +66,6 @@ public class HydraGameController implements Initializable
         // Create game grid
         gameGrid = new GridPane();
         gameGrid.setAlignment(Pos.CENTER);
-        gameGrid.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true;");
 
         // Create 16x16 grid
         for (int i = 0; i < 16; i++) {
@@ -89,41 +89,40 @@ public class HydraGameController implements Initializable
         return root;
     }
 
+    //reset button functionality
     public void reset(ActionEvent event)
     {
-        // TODO: Reset game state
         playButton.setDisable(false);
         slider.setDisable(false);
         slider.setValue(4);
         gameGrid.getChildren().clear();
+
+        //clear the occupied array hydra head to default to all false ie. none of the grids are filled
+        HydraHead.occupied = new boolean[16][16];
+        HydraHead.countHeads = 0;
     }
 
+    //play button functionality
     public void play(ActionEvent event)
     {
-        // TODO: Handle play action
+        //make the buttons gray when playing
         playButton.setDisable(true);
         slider.setDisable(true);
 
+        //get the head size from the slider
         int headSize = (int) slider.getValue();
+
+        //initialize the image for initial head
         Image initialHead = HydraHeadFactory.getHead(headSize);
-        //ImageView initialHeadView = new ImageView(initialHead);
-        // TODO: Place head in random grid cell
-        int numRow = rand.nextInt(16)+1;
-        int numCol = rand.nextInt(16)+1;
 
+        //get initial place to place initial head
+        int numRow = rand.nextInt(16);
+        int numCol = rand.nextInt(16);
+
+        //creating the initial head with the headsize
         HydraHead head = new HydraHead(initialHead,headSize);
+
+        //placing initial head in specified grid place
         head.putIn(numCol, numRow, gameGrid);
-
-        //ararylistH
-        //random 2 or 3,
-        //arraylistV
-        //while loop != arraylistH && !=arraylistV && == random number of heads, end of while loop, put a counter.
-        //run every time person clicks head
-        //pass headsize -1 to get the next head.
-    }
-
-    public void setHeadSize(MouseEvent event)
-    {
-        // TODO: Handle head size change
     }
 }

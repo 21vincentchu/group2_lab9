@@ -14,7 +14,8 @@ public class HydraHeadFactory
         // Private constructor as noted in UML
     }
 
-    static {
+    static
+    {
         // Initialize the static images using resource paths
         headSize1 = new Image(HydraHeadFactory.class.getResourceAsStream("/cs3330/hydragame/hydragame/HeadSize1.png"));
         headSize2 = new Image(HydraHeadFactory.class.getResourceAsStream("/cs3330/hydragame/hydragame/HeadSize2.png"));
@@ -26,7 +27,7 @@ public class HydraHeadFactory
 
     public static Image getHead(int size)
     {
-        // TODO: Return appropriate HydraHead based on size
+        //Return appropriate HydraHead based on size
         if (size == 1)
             return headSize1;
         else if (size == 2)

@@ -1,5 +1,7 @@
 package cs3330.hydragame.hydragame;
 //group 2
+//Vincent Chu VMC43b
+//Philip Vincent PSVFQ3
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -33,11 +35,4 @@ public class HydraGameApplication extends Application
         stage.show();
     }
 }
-//logic for the slider
-//when we press play, it shows the head of the size from the slider.
 
-//implement the images to show up when we click play
-//logic for clicking the heads
-//logic for popping up more heads when clicked, they should be randomly placed,
-//additionally have 2-3 heads grow
-//decrement sizes after they're all clicked. Initalized head when play is clicked is the headsize at slider
